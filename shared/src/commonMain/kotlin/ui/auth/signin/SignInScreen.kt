@@ -40,70 +40,11 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import components.SelfManagedTextField
 import components.Star
 import components.StarAndStick
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SelfManagedTextField(
-    label: String,
-    modifier: Modifier = Modifier,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    validator: (String) -> Boolean,
-    onValidationFailed: (String) -> Unit
-) {
-    var text by remember { mutableStateOf("") }
-    var isError by remember { mutableStateOf(false) }
 
-    val backgroundColor = if (isError) Color(0xFFecdbee) else Color(0xFFF1EAFF) // Замените на нужный цвет фона
-    val shadowColor = if (isError) Color.Red else Color.Gray // Замените на нужный цвет тени
-
-    val interactionSource = remember { MutableInteractionSource() }
-
-    Column(modifier = modifier) {
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .shadow(elevation = 4.dp, shape = RoundedCornerShape(4.dp), clip = false)
-            .border(width = 2.dp, color = if (isError) Color(0xFFC05555) else Color.Transparent)
-            .background(backgroundColor, RoundedCornerShape(4.dp))
-            .padding(horizontal = 16.dp, vertical = 12.dp)
-        ) {
-            BasicTextField(
-                modifier = Modifier
-                    .indicatorLine(false, false,
-                        interactionSource,
-                        TextFieldDefaults.textFieldColors(),
-                        focusedIndicatorLineThickness = 0.dp,
-                        unfocusedIndicatorLineThickness = 0.dp
-                    ),
-                cursorBrush = SolidColor(Color.Transparent),
-                value = text,
-                onValueChange = {
-                    text = it
-                    isError = !validator(text)
-                    if (isError) onValidationFailed(text)
-                },
-                keyboardOptions = keyboardOptions,
-                decorationBox = { innerTextField ->
-                    if (text.isEmpty()) {
-                        Text(label, style = MaterialTheme.typography.bodyLarge, color = Color(0xFFC3ACE9))
-                    }
-                    innerTextField()
-                },
-                singleLine = true
-            )
-        }
-
-        if (isError) {
-            Text(
-                text = "Не правильно введен номер",
-                color = Color.Red,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(start = 16.dp)
-            )
-        }
-    }
-}
 
 @Composable
 internal fun SignInScreen(component: SignInComponent) {
