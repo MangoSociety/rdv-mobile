@@ -13,5 +13,15 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
 * `/shared` is for the code that will be shared between all targets in the project.
   The most important subfolder is `commonMain`. If preferred, you can add code to the platform-specific folders here too.
 
+## Использование ресурсов
+
+- Добавить ресурсы в папку `shared/commonMain/composeResources`
+  - Строки добавляются в `values/strings.xml` по шаблону `<string name="questioning_header">Анкета</string>`
+  - Изображения добавляются в `drawable`
+    - Только текущая реализация поддерживает растровые изображения (png, webp, jpeg)
+- Используем как
+  - stringResource(Res.string.(string_name))
+  - painterResource(Res.drawable.(drawable_name_without_type))
+- Важно помнить, что сразу после добавления не будет доступа к ресурсам через `Res.string/drawable`, для того чтобы все работало надо собрать проект, так как оно работает через кодогенерацию     
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
