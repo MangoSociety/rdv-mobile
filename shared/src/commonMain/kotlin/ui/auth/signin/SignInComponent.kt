@@ -9,4 +9,6 @@ interface SignInComponent {
     val state: StateFlow<SignInStore.State>
 
     fun onIntent(event: SignInStore.Intent)
+
+    fun toSignUp()
 }

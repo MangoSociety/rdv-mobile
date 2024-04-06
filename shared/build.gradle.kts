@@ -1,3 +1,4 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -38,6 +39,9 @@ kotlin {
                 implementation(material)
                 implementation(material3)
                 implementation(materialIconsExtended)
+
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(components.resources)
             }
 //
 //            implementation(libs.ui.tooling)

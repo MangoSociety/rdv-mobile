@@ -18,7 +18,8 @@ import ui.auth.signin.store.SignInStore
 
 class DefaultSignInComponent(
     storeFactory: StoreFactory,
-    componentContext: ComponentContext
+    componentContext: ComponentContext,
+    private val toSignUpRoot: () -> Unit
 ) : SignInComponent, ComponentContext by componentContext {
 
     private val store = instanceKeeper.getStore {
@@ -32,6 +33,10 @@ class DefaultSignInComponent(
 
     override fun onIntent(event: SignInStore.Intent) {
         store.accept(event)
+    }
+
+    override fun toSignUp() {
+        toSignUpRoot.invoke()
     }
 
 }
