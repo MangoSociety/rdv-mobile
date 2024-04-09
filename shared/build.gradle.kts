@@ -47,22 +47,33 @@ kotlin {
 //            implementation(libs.ui.tooling)
 //            implementation(libs.ui.tooling.preview)
 //
-            implementation(libs.koin.core)
+//            implementation(libs.koin.core)
 ////            api(libs.koin.android)
 //
             implementation(libs.coroutine.core)
             implementation(libs.kotlin.serialization)
 
+//            implementation("io.coil-kt.coil3:coil:3.0.0-alpha01")
+//            implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.0-alpha01")
+
+
             api(libs.arkivanov.mvikotlin)
             api(libs.arkivanov.mvikotlin.main)
             api(libs.arkivanov.mvikotlin.ext.coroutine)
-//
             implementation(libs.decompose.decompose)
             implementation(libs.decompose.extensionsComposeJetbrains)
             implementation(libs.essenty.lifecycle)
 
-//            api(libs.sqldelight.coroutine.ext)
-//            api(libs.sqldelight.primitive.adapter)
+            implementation("io.coil-kt.coil3:coil-compose:3.0.0-alpha06")
+            implementation("io.coil-kt.coil3:coil-network-ktor:3.0.0-alpha06")
+        }
+
+        androidMain.dependencies {
+            implementation("io.ktor:ktor-client-okhttp:2.3.7")
+        }
+
+        iosMain.dependencies {
+            implementation("io.ktor:ktor-client-darwin:2.3.7")
         }
     }
 }

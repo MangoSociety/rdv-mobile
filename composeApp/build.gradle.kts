@@ -71,6 +71,10 @@ android {
 dependencies {
     implementation(project(":shared"))
 
+//    implementation("io.coil-kt.coil3:coil:3.0.0-alpha01")
+//    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.0-alpha01")
+
+
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui.tooling)

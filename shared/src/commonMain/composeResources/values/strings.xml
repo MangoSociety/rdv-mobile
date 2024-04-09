@@ -45,6 +45,11 @@
     <string name="questioning_food_asian">азиатская</string>
     <string name="questioning_food_italy">итальянская</string>
     <string name="questioning_food_custom">свой вариант</string>
+    <string name="chat_title">Чат</string>
+    <string name="chat_search">Введите наименование чата...</string>
+    <string name="name_user_maria">Мария Маркова</string>
+    <string name="chat_prints">печатает...</string>
+
 
     <string name="home_header">Главная</string>
 </resources>

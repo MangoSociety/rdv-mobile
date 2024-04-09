@@ -37,7 +37,6 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import rdv_mobile.shared.generated.resources.Res
 import rdv_mobile.shared.generated.resources.app_name
-import rdv_mobile.shared.generated.resources.ic_back
 import rdv_mobile.shared.generated.resources.sign_up_btn_back
 import rdv_mobile.shared.generated.resources.sign_up_btn_next
 import rdv_mobile.shared.generated.resources.sign_up_header
