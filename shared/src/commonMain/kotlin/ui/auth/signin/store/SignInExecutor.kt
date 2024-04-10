@@ -8,6 +8,7 @@ import ui.auth.signin.store.SignInStore.Message
 class SignInExecutor(
     val database: String
 ) : CoroutineExecutor<Intent, Unit, State, Message, Nothing>() {
+
     override fun executeIntent(intent: Intent, getState: () -> State) {
         when (intent) {
             is Intent.SignInProcess -> signInProcess(intent.login, intent.password)
@@ -18,3 +19,6 @@ class SignInExecutor(
         dispatch(Message.SignInDone)
     }
 }
+
+
+val sdf = listOf<Int>()

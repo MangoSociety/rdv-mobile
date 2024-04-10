@@ -17,6 +17,8 @@ import ui.auth.signin.DefaultSignInComponent
 import ui.auth.signin.SignInComponent
 import ui.auth.signup.DefaultSignUpComponent
 import ui.auth.signup.SignUpComponent
+import ui.chat.main.ChatMainComponent
+import ui.chat.main.DefaultChatMainComponent
 
 class DefaultRootComponent(
     componentContext: ComponentContext,
@@ -35,7 +37,7 @@ class DefaultRootComponent(
         get() = childStack(
             source = navigation,
             serializer = Config.serializer(),
-            initialConfiguration = Config.SignIn,
+            initialConfiguration = Config.ChatMain,
             childFactory = ::child
         )
 
@@ -43,6 +45,7 @@ class DefaultRootComponent(
         when(config) {
             is Config.SignIn -> RootComponent.Child.SignIn(signInComponent(childComponentContext))
             is Config.SignUp -> RootComponent.Child.SignUp(signUpComponent(childComponentContext))
+            is Config.ChatMain -> RootComponent.Child.ChatMain(chatMainComponent(childComponentContext))
         }
 
     private fun signInComponent(componentContext: ComponentContext): SignInComponent =
@@ -58,6 +61,13 @@ class DefaultRootComponent(
             storeFactory = DefaultStoreFactory()
         )
 
+    private fun chatMainComponent(componentContext: ComponentContext): ChatMainComponent =
+        DefaultChatMainComponent(
+            componentContext = componentContext,
+            storeFactory = DefaultStoreFactory(),
+            toChatMainRoot = {}
+        )
+
     override fun toSignUp() {
 
         navigation.push(Config.SignUp)
@@ -71,6 +81,9 @@ class DefaultRootComponent(
 
         @Serializable
         data object SignUp : Config()
+
+        @Serializable
+        data object ChatMain : Config()
 
     }
 

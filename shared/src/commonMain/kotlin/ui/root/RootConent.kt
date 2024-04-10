@@ -15,8 +15,9 @@ fun RootContentShared(component: RootComponent) {
         animation = stackAnimation(fade())
     ) {
         when(val child = it.instance) {
-            is RootComponent.Child.SignIn -> ChatMainScreen(child.component)
+            is RootComponent.Child.SignIn -> SignInScreen(child.component)
             is RootComponent.Child.SignUp -> SignUpScreen(child.component)
+            is RootComponent.Child.ChatMain -> ChatMainScreen(child.component)
         }
     }
 }
