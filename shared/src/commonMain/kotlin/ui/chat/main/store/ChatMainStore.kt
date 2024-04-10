@@ -3,11 +3,13 @@ package ui.chat.main.store
 import com.arkivanov.mvikotlin.core.store.Store
 
 interface ChatMainStore : Store<ChatMainStore.Intent, ChatMainStore.State, Nothing> {
+
     data class State(
         val success: Boolean = false,
         val chats: List<String> = emptyList(),
         val events: List<Event> = emptyList()
     ) {
+        val sdfsdf = 32
         sealed class Event {
             data class ShowText(val text: String): Event()
         }
