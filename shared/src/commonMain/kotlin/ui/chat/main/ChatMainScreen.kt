@@ -50,6 +50,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
@@ -59,6 +60,8 @@ import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import components.Star
+import components.StarAndStick
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -71,14 +74,13 @@ import org.jetbrains.compose.resources.stringResource
 import rdv_mobile.shared.generated.resources.Res
 import rdv_mobile.shared.generated.resources.chat_search
 import rdv_mobile.shared.generated.resources.chat_title
-import rdv_mobile.shared.generated.resources.female
-import rdv_mobile.shared.generated.resources.hp_gift
-import rdv_mobile.shared.generated.resources.ic_chat_support
-import rdv_mobile.shared.generated.resources.ic_search
-import rdv_mobile.shared.generated.resources.male
+import rdv_mobile.shared.generated.resources.dot
+import rdv_mobile.shared.generated.resources.female_gender
+import rdv_mobile.shared.generated.resources.gift
+import rdv_mobile.shared.generated.resources.male_gender
 import rdv_mobile.shared.generated.resources.name_user_maria
-import rdv_mobile.shared.generated.resources.number_of_messege
-import rdv_mobile.shared.generated.resources.un_read_message
+import rdv_mobile.shared.generated.resources.search
+import rdv_mobile.shared.generated.resources.support
 import ui.auth.signin.SignInComponent
 import ui.auth.signin.store.SignInStore
 import ui.chat.main.store.ChatMainStore
@@ -97,15 +99,47 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
     Scaffold(
         backgroundColor = BackgroundColor,
         topBar = {
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 24.dp, horizontal = 16.dp)
+                    .padding( horizontal = 16.dp)
             )
             {
+                Row(
+                    modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter)
+                ) {
+                    StarAndStick(
+                        modifier = Modifier.weight(2f).offset(x=12.dp),
+                        star = Star(20.dp, 0.07f, 0.5f, Color(0xFFFFF4BA), 200.dp, 1200.dp)
+                    )
+
+                    StarAndStick(
+                        modifier = Modifier.weight(2f).offset(x=0.dp),
+                        star = Star(20.dp, 0.12f, 0.7f, Color(0xFFFFF4BA), 200.dp, 1200.dp)
+                    )
+
+                    StarAndStick(
+                        modifier = Modifier.weight(2f).offset(x=-40.dp),
+                        star = Star(20.dp, 0.05f, 0.4f, Color(0xFFFFF4BA), 200.dp, 1200.dp)
+                    )
+                    StarAndStick(
+                        modifier = Modifier.weight(2f).offset(x=40.dp),
+                        star = Star(20.dp, 0.05f, 0.5f, Color(0xFFFFF4BA), 200.dp, 1200.dp)
+                    )
+                    StarAndStick(
+                        modifier = Modifier.weight(2f).offset(x=8.dp),
+                        star = Star(20.dp, 0.17f, 0.3f, Color(0xFFFFF4BA), 200.dp, 1200.dp)
+                    )
+                    StarAndStick(
+                        modifier = Modifier.weight(2f).offset(x=-36.dp),
+                        star = Star(20.dp, 0.1f, 0.4f, Color(0xFFFFF4BA), 200.dp, 1200.dp)
+                    )
+                }
                 Text(
                     modifier = Modifier
-                        .align(Alignment.Center),
+                        .align(Alignment.Center)
+                        .padding(vertical = 36.dp),
                     text = stringResource(Res.string.chat_title),
                     color = Color(0xFF594888),
                     fontSize = 24.sp
@@ -113,8 +147,9 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
                 val interactionSource = remember { MutableInteractionSource() }
                 Box(
                     modifier = Modifier
-                        .size(52.dp)
-                        .padding(top = 12.dp)
+                        .size(56.dp)
+                        .offset(x=12.dp)
+                        .padding(top = 16.dp, end = 16.dp)
                         .align(Alignment.CenterEnd)
                         .clickable (
                             interactionSource = interactionSource,
@@ -124,7 +159,7 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
                         }
                 ) {
                     Image(
-                        painterResource(Res.drawable.ic_chat_support),
+                        painterResource(Res.drawable.support),
                         contentDescription = null,
                         contentScale = ContentScale.FillHeight,
                         modifier = Modifier
@@ -133,14 +168,14 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
                     //сделать чтобы фон накладывался по кругу(подложка под число)
                     Column(
                         modifier = Modifier
-                            .background(BackgroundColor)
-                            .offset(x = -4.dp, y = -4.dp)
+                            .offset(x = 0.dp, y = -8.dp)
                             .align(Alignment.TopEnd)
-                            .border(2.dp, Color(0xFF594888), CircleShape)//4.dp слишком жирно
+                            .border(1.dp, Color(0xFF594888), CircleShape)//4.dp слишком жирно
                             .padding(4.dp)
                     ) {
                         Text(
-                            text = "35"
+                            text = "35",
+                            fontSize = 8.sp
                         )
                     }
                 }
@@ -148,6 +183,7 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
             }
         }
     ) {
+
         val trash = 4
         val message = remember { mutableStateOf("") }
         val users = Users()
@@ -173,10 +209,10 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
                 },
                 trailingIcon = {
                     Image(
-                        painterResource(Res.drawable.ic_search),
+                        painterResource(Res.drawable.search),
                         contentDescription = null,
                         modifier = Modifier
-                            .size(36.dp)
+                            .size(40.dp)
                             .padding(end = 8.dp)
                     )
                 },
@@ -219,6 +255,7 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
             }
         }
     }
+
 }
 
 @OptIn(ExperimentalResourceApi::class)
@@ -253,7 +290,7 @@ fun ChatWithUser(
                             contentScale = ContentScale.Crop
                         )
                         val genderDrawadle =
-                            GenderDrawadle(user.gender, Res.drawable.female, Res.drawable.male)
+                            GenderDrawadle(user.gender, Res.drawable.female_gender, Res.drawable.male_gender)
                         genderDrawadle?.let {
                             Image(
                                 painterResource(genderDrawadle),
@@ -274,7 +311,7 @@ fun ChatWithUser(
                         VisibleMessage(user.lastMessage, user.isTyping)
                     }
                 }
-                val unReadMessage = DrawingOrNo(user.unReadMessage, Res.drawable.un_read_message)
+                val unReadMessage = DrawingOrNo(user.unReadMessage, Res.drawable.dot)
                 unReadMessage?.let {
                     Image(
                         painterResource(unReadMessage),
@@ -287,7 +324,7 @@ fun ChatWithUser(
                 }
             }
         }
-        val birthday = DrawingOrNo(user.birthDate, Res.drawable.hp_gift)
+        val birthday = DrawingOrNo(user.birthDate, Res.drawable.gift)
         birthday?.let {
             Image(
                 painterResource(birthday),

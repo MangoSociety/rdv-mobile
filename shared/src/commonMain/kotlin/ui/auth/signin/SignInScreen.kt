@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -68,18 +69,18 @@ internal fun SignInScreen(component: SignInComponent) {
 //                StarAndStick(Modifier.weight(1f),Star(20.dp, 0.5f, 0.4f, Color(0xFFC3ACE9), 80.dp, 450.dp))
 
                 StarAndStick(
-                    modifier = Modifier.weight(2.5f),
-                    star = Star(20.dp, 0.5f, 0.4f, Color(0xFFF1EAFF), 200.dp, 1000.dp)
+                    modifier = Modifier.weight(2.5f).offset(x=20.dp),
+                    star = Star(20.dp, 0.6f, 0.4f, Color(0xFFF1EAFF), 200.dp, 1000.dp)
                 )
 
                 StarAndStick(
-                    modifier = Modifier.weight(1.7f),
+                    modifier = Modifier.weight(2.7f).offset(x=40.dp),
                     star = Star(20.dp, 0.3f, 0.6f, Color(0xFFF1EAFF), 300.dp, 1100.dp)
                 )
 
                 StarAndStick(
-                    modifier = Modifier.weight(2f),
-                    star = Star(20.dp, 0.5f, 0.4f, Color(0xFFF1EAFF), 100.dp, 1500.dp)
+                    modifier = Modifier.weight(1.7f).offset(x=-10.dp),
+                    star = Star(20.dp, 0.65f, 0.5f, Color(0xFFF1EAFF), 100.dp, 1500.dp)
                 )
             }
 

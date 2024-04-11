@@ -1,15 +1,20 @@
 package components
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.BlurEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlin.math.cos
@@ -37,36 +42,33 @@ fun StarAndStick(
         val starSize = size.width * star.koefStar // Modify this to change the size of the star
         val starCenter = Offset(size.width / 2, stickHeight.value + starSize / 2)
 
-        val diff = 7f
-        val diffWidth = 7f
+        val diff = 10f
+        val diffWidth = 6f
         val diffSmall = 5f
-        val starSizeOff = size.width * star.koefStar + diffWidth // Modify this to change the size of the star
-        val starCenterOff = Offset(size.width / 2 + diffWidth, stickHeight.value + starSize / 2 + diff)
+        val starSizeOff = size.width * star.koefStar // Modify this to change the size of the star
+        val starCenterOff = Offset(size.width / 2 + diff, stickHeight.value + starSize / 2 + diffWidth)
 
         drawLine(
             color = Color(0xFF101010),
             start = Offset(size.width / 2 + diffSmall, 0f + diffSmall),
             end = Offset(size.width / 2 + diffSmall, stickHeight.value + diffSmall),
-            alpha = 0.2f,
+            alpha = 0.1f,
             strokeWidth = stickWidth
         )
 
         // Draw the stick
         drawLine(
-            color = Color.White,
+            color = Color(0xFFF1EAFF),
             start = Offset(size.width / 2, 0f),
             end = Offset(size.width / 2, stickHeight.value),
             strokeWidth = stickWidth
         )
-
-
-        // Draw the shadow first
         drawPath(
-            path = createStarPath(starCenterOff, starSizeOff).first,
-            color = Color(0xFF101010),
-            style = Fill,
-            alpha = 0.2f,
-            blendMode = BlendMode.SrcOver
+                path = createStarPath(starCenterOff, starSizeOff).first,
+                color = Color(0xFF101010),
+                style = Fill,
+                alpha = 0.1f,
+                blendMode = BlendMode.SrcOver
         )
 
         // Draw the star on top of the shadow
