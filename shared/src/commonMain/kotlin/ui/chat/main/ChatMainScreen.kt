@@ -78,7 +78,6 @@ import rdv_mobile.shared.generated.resources.dot
 import rdv_mobile.shared.generated.resources.female_gender
 import rdv_mobile.shared.generated.resources.gift
 import rdv_mobile.shared.generated.resources.male_gender
-import rdv_mobile.shared.generated.resources.name_user_maria
 import rdv_mobile.shared.generated.resources.search
 import rdv_mobile.shared.generated.resources.support
 import ui.auth.signin.SignInComponent
@@ -186,8 +185,8 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
 
         val trash = 4
         val message = remember { mutableStateOf("") }
-        val users = Users()
-        var resultUsers = remember { mutableStateOf(Users()) }
+        val chat = Chat()
+        var resultUsers = remember { mutableStateOf(Chat()) }
         var searchJob by remember { mutableStateOf<Job?>(null) }
         Column {
             state.events.forEach {
@@ -203,8 +202,8 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
                 onValueChange = { newText ->
                     message.value = newText
                     component.onIntent(ChatMainStore.Intent.ProcessingSearch(newText))
-                    resultUsers.value = (users.filter {
-                        it.name.toLowerCase().contains(newText.toLowerCase())
+                    resultUsers.value = (chat.filter {
+                        it.data.name.toLowerCase().contains(newText.toLowerCase())
                     }).toMutableList()
                 },
                 trailingIcon = {
@@ -244,9 +243,6 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier
             ) {
-//                items(state.chats) {
-//
-//                }
                 items(resultUsers.value) {
                     ChatWithUser(
                         it,
@@ -261,7 +257,7 @@ internal fun ChatMainScreen(component: ChatMainComponent) {
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun ChatWithUser(
-    user: TemporaryUserData,
+    chat: Chat,
     modifier: Modifier = Modifier,
     onChatClicked: (Int) -> Unit
 ) {
@@ -282,7 +278,7 @@ fun ChatWithUser(
                 ) {
                     Box(modifier = Modifier.size(48.dp)) {
                         AsyncImage(
-                            model = user.photoUrl,
+                            model = chat.data.avatar,
                             contentDescription = null,
                             modifier = Modifier
                                 .clip(CircleShape)
@@ -290,7 +286,7 @@ fun ChatWithUser(
                             contentScale = ContentScale.Crop
                         )
                         val genderDrawadle =
-                            GenderDrawadle(user.gender, Res.drawable.female_gender, Res.drawable.male_gender)
+                            GenderDrawadle(chat.data.gender, Res.drawable.female_gender, Res.drawable.male_gender)
                         genderDrawadle?.let {
                             Image(
                                 painterResource(genderDrawadle),
@@ -305,13 +301,13 @@ fun ChatWithUser(
                     Column(modifier = Modifier.padding(bottom = 14.dp, start = 12.dp)) {
                         Text(
                             color = Color(0xFF594888),
-                            text = user.name,
+                            text = chat.data.name,
                             fontSize = 14.sp
                         )
-                        VisibleMessage(user.lastMessage, user.isTyping)
+                        VisibleMessage(chat.data.message, chat.data.isTyping)
                     }
                 }
-                val unReadMessage = DrawingOrNo(user.unReadMessage, Res.drawable.dot)
+                val unReadMessage = DrawingOrNo(chat.data.isNewMessage, Res.drawable.dot)
                 unReadMessage?.let {
                     Image(
                         painterResource(unReadMessage),
@@ -324,7 +320,7 @@ fun ChatWithUser(
                 }
             }
         }
-        val birthday = DrawingOrNo(user.birthDate, Res.drawable.gift)
+        val birthday = DrawingOrNo(chat.data.isBirthday, Res.drawable.gift)
         birthday?.let {
             Image(
                 painterResource(birthday),

@@ -14,6 +14,7 @@ interface RootComponent {
         class SignIn(val component: SignInComponent): Child()
         class SignUp(val component: SignUpComponent): Child()
         class ChatMain(val component: ChatMainComponent): Child()
+        class CurrentChat(val component: ChatMainComponent): Child()
     }
 
     fun toSignUp()
