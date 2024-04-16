@@ -37,7 +37,7 @@ class DefaultRootComponent(
         get() = childStack(
             source = navigation,
             serializer = Config.serializer(),
-            initialConfiguration = Config.ChatMain,
+            initialConfiguration = Config.CurrentChat,
             childFactory = ::child
         )
 
@@ -46,6 +46,7 @@ class DefaultRootComponent(
             is Config.SignIn -> RootComponent.Child.SignIn(signInComponent(childComponentContext))
             is Config.SignUp -> RootComponent.Child.SignUp(signUpComponent(childComponentContext))
             is Config.ChatMain -> RootComponent.Child.ChatMain(chatMainComponent(childComponentContext))
+            is Config.CurrentChat -> RootComponent.Child.CurrentChat(chatMainComponent(childComponentContext))
         }
 
     private fun signInComponent(componentContext: ComponentContext): SignInComponent =
@@ -85,6 +86,8 @@ class DefaultRootComponent(
         @Serializable
         data object ChatMain : Config()
 
+        @Serializable
+        data object CurrentChat : Config()
     }
 
 }

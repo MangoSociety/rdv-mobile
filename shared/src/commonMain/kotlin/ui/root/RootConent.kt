@@ -6,6 +6,7 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import ui.auth.signin.SignInScreen
 import ui.auth.signup.SignUpScreen
+import ui.chat.current.CurrentChatScreen
 import ui.chat.main.ChatMainScreen
 
 @Composable
@@ -18,6 +19,7 @@ fun RootContentShared(component: RootComponent) {
             is RootComponent.Child.SignIn -> SignInScreen(child.component)
             is RootComponent.Child.SignUp -> SignUpScreen(child.component)
             is RootComponent.Child.ChatMain -> ChatMainScreen(child.component)
+            is RootComponent.Child.CurrentChat -> CurrentChatScreen(child.component)
         }
     }
 }
