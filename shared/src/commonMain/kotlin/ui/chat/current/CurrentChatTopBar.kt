@@ -104,11 +104,18 @@ fun CurrentChatTopBar(
                             text = chat.info.titleMain,
                             fontSize = 20.sp
                         )
-                        if (chat.messages.any { it.isTyping }) {
-                            IsTyping(true, false)
-                        } else if (chat.messages.any { it.online }) {
-                            IsTyping(false, true)
+                        when(chat.info){
+                            is ChatSealed.ChatSelf -> {
+                                if (chat.messages.any { it.isTyping }) {
+                                    IsTyping(true, false)
+                                } else if (chat.messages.any { it.online }) {
+                                    IsTyping(false, true)
+                                }
+                            }
+                            is ChatSealed.ChatGroup ->{
+                            }
                         }
+
                     }
                 }
                 CurrentChatStars()
