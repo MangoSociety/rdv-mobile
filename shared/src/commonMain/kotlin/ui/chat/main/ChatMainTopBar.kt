@@ -37,7 +37,6 @@ import ui.chat.main.store.ChatMainStore
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun ChatMainTopBar(component: ChatMainComponent){
-    val state by component.state.collectAsState()
     Box(
         modifier = Modifier
             .fillMaxWidth()

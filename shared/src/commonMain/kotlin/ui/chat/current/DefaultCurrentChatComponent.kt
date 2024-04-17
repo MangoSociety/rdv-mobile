@@ -1,4 +1,4 @@
-package ui.chat.main
+package ui.chat.current
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
@@ -6,25 +6,25 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.StateFlow
-import ui.chat.main.store.ChatMainStore
-import ui.chat.main.store.ChatMainStoreFactory
+import ui.chat.current.store.CurrentChatStore
+import ui.chat.current.store.CurrentChatStoreFactory
 
-class DefaultChatMainComponent (
+class DefaultCurrentChatComponent (
     storeFactory: StoreFactory,
     componentContext: ComponentContext,
-    private val toChatMainRoot: () -> Unit
-) : ChatMainComponent, ComponentContext by componentContext {
+    private val toCurrentChatRoot: () -> Unit
+) : CurrentChatComponent, ComponentContext by componentContext {
 
     private val store = instanceKeeper.getStore {
-        ChatMainStoreFactory(
+        CurrentChatStoreFactory(
             storeFactory = storeFactory
         ).create()
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    override val state: StateFlow<ChatMainStore.State> = store.stateFlow
+    override val state: StateFlow<CurrentChatStore.State> = store.stateFlow
 
-    override fun onIntent(event: ChatMainStore.Intent) {
+    override fun onIntent(event: CurrentChatStore.Intent) {
         store.accept(event)
     }
 

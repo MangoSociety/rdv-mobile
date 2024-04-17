@@ -17,6 +17,8 @@ import ui.auth.signin.DefaultSignInComponent
 import ui.auth.signin.SignInComponent
 import ui.auth.signup.DefaultSignUpComponent
 import ui.auth.signup.SignUpComponent
+import ui.chat.current.CurrentChatComponent
+import ui.chat.current.DefaultCurrentChatComponent
 import ui.chat.main.ChatMainComponent
 import ui.chat.main.DefaultChatMainComponent
 
@@ -46,7 +48,7 @@ class DefaultRootComponent(
             is Config.SignIn -> RootComponent.Child.SignIn(signInComponent(childComponentContext))
             is Config.SignUp -> RootComponent.Child.SignUp(signUpComponent(childComponentContext))
             is Config.ChatMain -> RootComponent.Child.ChatMain(chatMainComponent(childComponentContext))
-            is Config.CurrentChat -> RootComponent.Child.CurrentChat(chatMainComponent(childComponentContext))
+            is Config.CurrentChat -> RootComponent.Child.CurrentChat(currentChatComponent(childComponentContext))
         }
 
     private fun signInComponent(componentContext: ComponentContext): SignInComponent =
@@ -67,6 +69,13 @@ class DefaultRootComponent(
             componentContext = componentContext,
             storeFactory = DefaultStoreFactory(),
             toChatMainRoot = {}
+        )
+
+    private fun currentChatComponent(componentContext: ComponentContext): CurrentChatComponent =
+        DefaultCurrentChatComponent(
+            componentContext = componentContext,
+            storeFactory = DefaultStoreFactory(),
+            toCurrentChatRoot = {}
         )
 
     override fun toSignUp() {

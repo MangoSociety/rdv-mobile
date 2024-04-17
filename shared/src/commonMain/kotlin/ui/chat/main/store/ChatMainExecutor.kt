@@ -25,7 +25,7 @@ class ChatMainExecutor() :
             }
 
             is ChatMainStore.Intent.ProcessingSearch -> {
-                searchFlow.tryEmit(intent.serch)
+                searchFlow.tryEmit(intent.search)
             }
         }
     }

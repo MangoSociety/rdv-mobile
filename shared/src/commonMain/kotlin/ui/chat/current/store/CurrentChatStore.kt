@@ -1,12 +1,12 @@
-package ui.chat.main.store
+package ui.chat.current.store
 
 import com.arkivanov.mvikotlin.core.store.Store
 
-interface ChatMainStore : Store<ChatMainStore.Intent, ChatMainStore.State, Nothing> {
+interface CurrentChatStore : Store<CurrentChatStore.Intent, CurrentChatStore.State, Nothing> {
 
     data class State(
         val success: Boolean = false,
-        val chats: List<String> = emptyList(),
+        val message: List<String> = emptyList(),
         val events: List<Event> = emptyList()
     ) {
         sealed class Event {
@@ -16,11 +16,15 @@ interface ChatMainStore : Store<ChatMainStore.Intent, ChatMainStore.State, Nothi
     }
 
     sealed interface Intent {
-        object OnSupportClicked: Intent
+        object SendEmoji: Intent
 
-        data class OnChatClicked(val chatId: Int): Intent
+        object BackButton: Intent
 
-        data class ProcessingSearch(val search: String): Intent
+
+        data class OnInfoModelClicked(val chatId: Int): Intent
+
+        data class SendMessage(val message: String): Intent
+
     }
 
     sealed interface Message {

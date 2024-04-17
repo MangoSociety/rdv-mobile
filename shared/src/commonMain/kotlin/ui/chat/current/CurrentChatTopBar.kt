@@ -1,6 +1,7 @@
 package ui.chat.current
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,12 +31,17 @@ import org.jetbrains.compose.resources.painterResource
 import rdv_mobile.shared.generated.resources.Res
 import rdv_mobile.shared.generated.resources.back_arrow
 import rdv_mobile.shared.generated.resources.gift
+import ui.chat.current.store.CurrentChatStore
+import ui.chat.main.ChatMainComponent
+import ui.chat.main.store.ChatMainStore
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun CurrentChatTopBar(idUser:Int){
-
-
+fun CurrentChatTopBar(
+    idUser:Int,
+    onBackClick: () -> Unit,
+    onProfileClick: () -> Unit
+){
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -43,7 +51,13 @@ fun CurrentChatTopBar(idUser:Int){
             Image(
                 painterResource(Res.drawable.back_arrow),
                 contentDescription = null,
-                modifier = Modifier.padding(vertical = 28.dp).size(24.dp).align(Alignment.CenterStart)
+                modifier = Modifier
+                    .padding(vertical = 28.dp)
+                    .size(24.dp)
+                    .align(Alignment.CenterStart)
+                    .clickable {
+                        onBackClick()
+                    }
             )
             Box(
                 modifier = Modifier.fillMaxWidth()
@@ -53,7 +67,14 @@ fun CurrentChatTopBar(idUser:Int){
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(16.dp)
                 ) {
-                    Box(modifier = Modifier.padding(start = 40.dp).size(48.dp)) {
+                    Box(
+                        modifier = Modifier
+                            .padding(start = 40.dp)
+                            .size(48.dp)
+                            .clickable {
+                                onProfileClick()
+                            }
+                    ) {
                         AsyncImage(
                             model = chat.info.avatarMain,
                             contentDescription = null,

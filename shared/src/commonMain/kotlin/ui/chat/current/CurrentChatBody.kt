@@ -1,6 +1,7 @@
 package ui.chat.current
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,7 +38,11 @@ import rdv_mobile.shared.generated.resources.smile_transparent
 
 @OptIn(ExperimentalResourceApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun CurrentChatBody(idUser:Int){
+fun CurrentChatBody(
+    idUser:Int,
+    onSendClick: () -> Unit,
+    onEmojiClick: () -> Unit
+){
     val interactionSource = remember { MutableInteractionSource() }
     val chat: ChatMain = ChatMain().find { it.id == idUser }!!
 
@@ -76,6 +81,9 @@ fun CurrentChatBody(idUser:Int){
                         modifier = Modifier
                             .size(44.dp)
                             .padding(start = 8.dp)
+                            .clickable {
+                                onEmojiClick()
+                            }
                     )
                 },
                 trailingIcon = {
@@ -85,6 +93,9 @@ fun CurrentChatBody(idUser:Int){
                         modifier = Modifier
                             .size(44.dp)
                             .padding(end = 8.dp)
+                            .clickable {
+                                onSendClick()
+                            }
                     )
                 },
                 colors = TextFieldDefaults.colors(

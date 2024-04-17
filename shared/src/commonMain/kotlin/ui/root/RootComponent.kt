@@ -4,6 +4,7 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
 import ui.auth.signin.SignInComponent
 import ui.auth.signup.SignUpComponent
+import ui.chat.current.CurrentChatComponent
 import ui.chat.main.ChatMainComponent
 
 interface RootComponent {
@@ -14,7 +15,7 @@ interface RootComponent {
         class SignIn(val component: SignInComponent): Child()
         class SignUp(val component: SignUpComponent): Child()
         class ChatMain(val component: ChatMainComponent): Child()
-        class CurrentChat(val component: ChatMainComponent): Child()
+        class CurrentChat(val component: CurrentChatComponent): Child()
     }
 
     fun toSignUp()

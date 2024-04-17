@@ -64,6 +64,7 @@ import rdv_mobile.shared.generated.resources.search
 import rdv_mobile.shared.generated.resources.send_message
 import rdv_mobile.shared.generated.resources.smile_transparent
 import rdv_mobile.shared.generated.resources.support
+import ui.chat.current.store.CurrentChatStore
 import ui.chat.main.Chat
 import ui.chat.main.ChatMainComponent
 import ui.chat.main.DrawingOrNo
@@ -74,16 +75,43 @@ import ui.chat.main.store.ChatMainStore
 import kotlin.random.Random
 
 @Composable
-internal fun CurrentChatScreen(component: ChatMainComponent) {
+internal fun CurrentChatScreen(component: CurrentChatComponent) {
     val idUser = 4
+
+    val state by component.state.collectAsState()
+
+    state.events.forEach {  event ->
+        when(event) {
+            is CurrentChatStore.State.Event.ShowText -> {
+                Text(event.text)
+            }
+        }
+    }
 
     Scaffold(
         backgroundColor = BackgroundColor,
-        topBar = {CurrentChatTopBar(idUser)}
-
+        topBar = {
+            CurrentChatTopBar(
+                idUser = idUser,
+                onBackClick = {
+                    component.onIntent(CurrentChatStore.Intent.BackButton)
+                },
+                onProfileClick = {
+                    component.onIntent(CurrentChatStore.Intent.OnInfoModelClicked(idUser))
+                }
+            )
+        }
     )
     {
-        CurrentChatBody(idUser)
+        CurrentChatBody(
+            idUser = idUser,
+            onSendClick = {
+                component.onIntent(CurrentChatStore.Intent.BackButton)
+            },
+            onEmojiClick = {
+                component.onIntent(CurrentChatStore.Intent.OnInfoModelClicked(idUser))
+            }
+        )
     }
 }
 
