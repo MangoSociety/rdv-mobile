@@ -75,7 +75,10 @@ fun CurrentChatBody(
             val message = remember { mutableStateOf("") }
             TextField(
                 value = message.value,
-                textStyle = TextStyle(color = Color(0xFF594888), fontSize = 18.sp),
+                textStyle = TextStyle(
+                    color = Color(0xFF594888),
+                    fontSize = 18.sp
+                ),
                 onValueChange = { newText ->
                     message.value = newText
                 },
@@ -121,7 +124,6 @@ fun CurrentChatBody(
                     .align(Alignment.BottomStart)
                     .padding(horizontal = 8.dp)
                     .padding(bottom = 8.dp)
-                    .heightIn(min = 40.dp)
                     .clip(RoundedCornerShape(8.dp))
                     .indicatorLine(
                         false, false,

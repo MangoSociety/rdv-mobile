@@ -44,13 +44,13 @@ fun StarAndStick(
 
         val diff = 10f
         val diffWidth = 6f
-        val diffSmall = 5f
+        val diffSmall = 10f
         val starSizeOff = size.width * star.koefStar // Modify this to change the size of the star
         val starCenterOff = Offset(size.width / 2 + diff, stickHeight.value + starSize / 2 + diffWidth)
 
         drawLine(
             color = Color(0xFF101010),
-            start = Offset(size.width / 2 + diffSmall, 0f + diffSmall),
+            start = Offset(size.width / 2 + diffSmall, 0f),
             end = Offset(size.width / 2 + diffSmall, stickHeight.value + diffSmall),
             alpha = 0.1f,
             strokeWidth = stickWidth

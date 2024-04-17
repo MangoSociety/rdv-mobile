@@ -34,13 +34,13 @@ fun ChatBubble(message: String, idUser: Int, avatar: String?) {
         if (idUser == 1) {
             xOffset = -4.dp
             xOffsetBox = 0.dp
-            yOffset = 30.dp
+            yOffset = 28.dp
             colorBack = Color(0xFFE1D2FE)
             alignment = Alignment.TopEnd
         }
         else{
             xOffset = 48.dp
-            yOffset = 20.dp
+            yOffset = 18.dp
             xOffsetBox = 0.dp
             colorBack = Color(0xFFFAF7FF)
             alignment = Alignment.TopStart
@@ -55,7 +55,7 @@ fun ChatBubble(message: String, idUser: Int, avatar: String?) {
                     contentScale = ContentScale.Crop
                 )
                 xOffsetBox = 52.dp
-                yOffset = 30.dp
+                yOffset = 28.dp
             }
         }
         // Стилизация основного баллона
