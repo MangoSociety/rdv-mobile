@@ -18,5 +18,4 @@ class CurrentChatStoreFactory(
             executorFactory = { CurrentChatExecutor() },
             reducer = CurrentChatReducer
         )
-
 }

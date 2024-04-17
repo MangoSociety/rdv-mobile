@@ -8,5 +8,4 @@ interface CurrentChatComponent {
     val state: StateFlow<CurrentChatStore.State>
 
     fun onIntent(event: CurrentChatStore.Intent)
-
 }

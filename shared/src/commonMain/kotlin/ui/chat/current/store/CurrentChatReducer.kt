@@ -18,6 +18,4 @@ object CurrentChatReducer : Reducer<CurrentChatStore.State, CurrentChatStore.Mes
             }
         }
     }
-
-
 }

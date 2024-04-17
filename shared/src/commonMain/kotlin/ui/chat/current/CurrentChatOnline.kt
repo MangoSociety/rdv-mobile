@@ -25,7 +25,8 @@ fun Online(online: Boolean){
             Text(
                 text = "В сети",
                 color = Color(0xFF594888),
-                modifier = Modifier.padding(top = 4.dp),
+                modifier = Modifier
+                    .padding(top = 4.dp),
                 fontSize = 12.sp
             )
         }
@@ -38,7 +39,8 @@ fun Online(online: Boolean){
             Text(
                 text = "Не в сети",
                 color = Color(0xFF594888),
-                modifier = Modifier.padding(top = 4.dp),
+                modifier = Modifier
+                    .padding(top = 4.dp),
                 fontSize = 12.sp
             )
         }

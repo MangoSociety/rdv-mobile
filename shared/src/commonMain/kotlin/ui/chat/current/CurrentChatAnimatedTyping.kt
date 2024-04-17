@@ -39,7 +39,8 @@ fun CurrentChatAnimatedTyping() {
         Text(
             text = "Печатает$dots",
             color = Color(0xFF594888),
-            modifier = Modifier.padding(top = 8.dp),
+            modifier = Modifier
+                .padding(top = 8.dp),
             fontSize = 12.sp
         )
     }

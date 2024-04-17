@@ -52,7 +52,7 @@ fun CurrentChatTopBar(
                 painterResource(Res.drawable.back_arrow),
                 contentDescription = null,
                 modifier = Modifier
-                    .padding(vertical = 28.dp)
+                    .padding(vertical = 16.dp)
                     .size(24.dp)
                     .align(Alignment.CenterStart)
                     .clickable {
@@ -65,7 +65,8 @@ fun CurrentChatTopBar(
                 val chat: ChatMain = ChatMain().find { it.id == idUser }!!
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp, vertical = 24.dp)
                 ) {
                     Box(
                         modifier = Modifier
@@ -94,7 +95,10 @@ fun CurrentChatTopBar(
                             )
                         }
                     }
-                    Column(modifier = Modifier.padding(start = 16.dp)) {
+                    Column(
+                        modifier = Modifier
+                            .padding(start = 16.dp)
+                    ) {
                         Text(
                             color = Color(0xFF594888),
                             text = chat.info.titleMain,

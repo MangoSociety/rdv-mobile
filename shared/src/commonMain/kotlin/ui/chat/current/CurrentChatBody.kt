@@ -50,7 +50,8 @@ fun CurrentChatBody(
         color = Color(0xFFF1EAFF),
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 20.dp, vertical = 16.dp)
+            .padding(horizontal = 20.dp)
+            .padding(bottom = 16.dp)
     ) {
         Box(modifier = Modifier
             .fillMaxSize())
@@ -59,12 +60,17 @@ fun CurrentChatBody(
                 modifier = Modifier
             ) {
                 when(chat.info){
-                    is ChatSealed.ChatSelf -> chat.messages.forEach { item{ChatBubble(it.message, it.id, null) }}
-                    is ChatSealed.ChatGroup ->chat.messages.forEach { item{ChatBubble(it.message, it.id, it.avatar) }}
+                    is ChatSealed.ChatSelf -> chat.messages.forEach {
+                        item{
+                            ChatBubble(it.message, it.id, null)
+                        }
+                    }
+                    is ChatSealed.ChatGroup ->chat.messages.forEach {
+                        item{
+                            ChatBubble(it.message, it.id, it.avatar)
+                        }
+                    }
                 }
-            }
-            Column(modifier = Modifier){
-
             }
             val message = remember { mutableStateOf("") }
             TextField(

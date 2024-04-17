@@ -15,18 +15,26 @@ import components.StarAndStick
 @Composable
 fun BoxScope.CurrentChatStars(){
     Row(
-        modifier = Modifier.fillMaxWidth().align(Alignment.TopEnd)
+        modifier = Modifier
+            .fillMaxWidth()
+            .align(Alignment.TopEnd)
     ) {
         StarAndStick(
-            modifier = Modifier.weight(2f).offset(x = 240.dp),
+            modifier = Modifier
+                .weight(2f)
+                .offset(x = 240.dp),
             star = Star(20.dp, 0.05f, 0.2f, Color(0xFFFFF4BA), 200.dp, 1200.dp)
         )
         StarAndStick(
-            modifier = Modifier.weight(2f).offset(x = 140.dp),
+            modifier = Modifier
+                .weight(2f)
+                .offset(x = 140.dp),
             star = Star(20.dp, 0.1f, 0.3f, Color(0xFFFFF4BA), 200.dp, 1200.dp)
         )
         StarAndStick(
-            modifier = Modifier.weight(2f).offset(x = 40.dp),
+            modifier = Modifier
+                .weight(2f)
+                .offset(x = 40.dp),
             star = Star(20.dp, 0.02f, 0.15f, Color(0xFFFFF4BA), 200.dp, 1200.dp)
         )
     }

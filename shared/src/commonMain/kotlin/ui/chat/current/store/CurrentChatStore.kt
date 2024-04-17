@@ -20,11 +20,9 @@ interface CurrentChatStore : Store<CurrentChatStore.Intent, CurrentChatStore.Sta
 
         object BackButton: Intent
 
-
         data class OnInfoModelClicked(val chatId: Int): Intent
 
         data class SendMessage(val message: String): Intent
-
     }
 
     sealed interface Message {
@@ -32,5 +30,4 @@ interface CurrentChatStore : Store<CurrentChatStore.Intent, CurrentChatStore.Sta
         data class ShowText(val text: String): Message
         data class UpdateChats(val data: List<String>): Message
     }
-
 }
